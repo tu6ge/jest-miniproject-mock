@@ -1,7 +1,10 @@
 export class Weixin {
   private jest: typeof jest;
   readonly apis: string[] = [
-    'showModal'
+    'showModal',
+    'canIUse',
+    'base64ToArrayBuffer',
+    'arrayBufferToBase64'
   ];
 
   constructor(j: typeof jest) {
@@ -24,9 +27,28 @@ export class Weixin {
 
   
   showModal():jest.Mock {
-    return this.jest.fn(()=>{
-      return 'abc'
-      return Promise.resolve()
-    })
+    return this.jest.fn().mockReturnValue(Promise)
+  }
+
+  // TODO: 目前没有找到使用案例
+  env():jest.Mock {
+    return this.jest.fn(()=> 'demo')
+  }
+
+  canIUse():jest.Mock {
+    return this.jest.fn().mockReturnValue(true)
+  }
+
+  base64ToArrayBuffer():jest.Mock {
+    return this.jest.fn().mockReturnValue(new ArrayBuffer(8))
+  }
+
+  arrayBufferToBase64():jest.Mock {
+    return this.jest.fn().mockReturnValue('base64str')
+  }
+
+  // TODO 未完成
+  getSystemInfoSync():jest.Mock {
+    return this.jest.fn()
   }
 }
