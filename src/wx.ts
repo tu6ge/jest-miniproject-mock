@@ -1,11 +1,23 @@
+import {UpdateManager} from './interfaces/index'
 export class Weixin {
   private jest: typeof jest;
-  readonly apis: string[] = [
-    'showModal',
-    'canIUse',
-    'base64ToArrayBuffer',
-    'arrayBufferToBase64'
-  ];
+
+  /**
+   * api 列表
+   * key 是api
+   * value 是返回值
+  */
+  readonly apis: object = {
+    'showModal': Promise,
+    'canIUse': true,
+    'base64ToArrayBuffer': new ArrayBuffer(8),
+    'arrayBufferToBase64': 'base64str',
+    'getSystemInfoSync': Promise,
+    'getSystemInfoAsync': undefined,
+    'getSystemInfo': Promise,
+    'updateWeChatApp': Promise,
+    'getUpdateManager': undefined,
+  };
 
   constructor(j: typeof jest) {
     this.jest = j;
@@ -13,7 +25,7 @@ export class Weixin {
   }
 
   private definePropertyList(){
-    for(const api of this.apis){
+    for(const api of Object.keys(this.apis)){
       this.defineProperty(api)
     }
   }
@@ -21,34 +33,24 @@ export class Weixin {
   private defineProperty(name: string):void {
     Object.defineProperty(this, name, {
       enumerable: false,
-      value: this[name]()
+      value: this[name] 
+              ? this[name]()
+              : this.jest.fn().mockReturnValue(this.apis[name])
     });
   }
 
-  
-  showModal():jest.Mock {
-    return this.jest.fn().mockReturnValue(Promise)
-  }
-
   // TODO: 目前没有找到使用案例
-  env():jest.Mock {
-    return this.jest.fn(()=> 'demo')
-  }
+  // env():jest.Mock {
+  //   return this.jest.fn(()=> 'demo')
+  // }
 
-  canIUse():jest.Mock {
-    return this.jest.fn().mockReturnValue(true)
-  }
-
-  base64ToArrayBuffer():jest.Mock {
-    return this.jest.fn().mockReturnValue(new ArrayBuffer(8))
-  }
-
-  arrayBufferToBase64():jest.Mock {
-    return this.jest.fn().mockReturnValue('base64str')
-  }
-
-  // TODO 未完成
-  getSystemInfoSync():jest.Mock {
-    return this.jest.fn()
+  getUpdateManager():jest.Mock {
+    let res:UpdateManager = new class implements UpdateManager{
+      applyUpdate(){}
+      onCheckForUpdate(){}
+      onUpdateReady(){}
+      onUpdateFailed(){}
+    }
+    return this.jest.fn().mockReturnValue(res);
   }
 }

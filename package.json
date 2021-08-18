@@ -5,7 +5,7 @@
   "main": "lib/setup.js",
   "scripts": {
     "build": "rollup -c",
-    "test": "jest --coverage --verbose -u"
+    "test": "jest --coverage --verbose"
   },
   "author": "tu6ge",
   "license": "MIT",
