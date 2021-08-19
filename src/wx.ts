@@ -1,4 +1,8 @@
-import {UpdateManager} from './interfaces/index'
+import {
+  UpdateManager,
+  RealtimeLogManager,
+  LogManager
+} from './interfaces/index'
 export class Weixin {
   private jest: typeof jest;
 
@@ -12,11 +16,17 @@ export class Weixin {
     'canIUse': true,
     'base64ToArrayBuffer': new ArrayBuffer(8),
     'arrayBufferToBase64': 'base64str',
+
+    // 系统
     'getSystemInfoSync': Promise,
     'getSystemInfoAsync': undefined,
     'getSystemInfo': Promise,
+
+    // 更新
     'updateWeChatApp': Promise,
     'getUpdateManager': undefined,
+
+    // 生命周期
     'getLaunchOptionsSync': {
       path:'bar',
       scene:1000,
@@ -35,13 +45,60 @@ export class Weixin {
       forwardMaterials:[],
       chatType:0,
     },
+
+    // 应用级事件
     'onUnhandledRejection':undefined,
-    'onThemeChange':undefined, 
-    /* TODO
-    * 类似 onThemeChange 的 api: onPageNotFound, onError,onAudioInterruptionEnd, onAudioInterruptionBegin,
-    * onAppShow, onAppHide, offUnhandledRejection, offThemeChange, offPageNotFound, offError, offAudioInterruptionEnd
-    * offAudioInterruptionBegin,offAppShow, offAppHide
-    */ 
+    'onThemeChange':undefined,
+    'onPageNotFound':undefined,
+    'onError':undefined,
+    'onAudioInterruptionEnd':undefined,
+    'onAudioInterruptionBegin':undefined,
+    'onAppShow':undefined,
+    'onAppHide':undefined,
+    'offUnhandledRejection':undefined,
+    'offThemeChange':undefined,
+    'offPageNotFound':undefined,
+    'offError':undefined,
+    'offAudioInterruptionEnd':undefined,
+    'offAudioInterruptionBegin':undefined,
+    'offAppShow':undefined,
+    'offAppHide':undefined,
+
+    // 调试
+    'setEnableDebug': Promise,
+    'getRealtimeLogManager': undefined,
+    'getLogManager':undefined,
+
+    // 性能
+    'reportPerformance':undefined,
+    'getPerformance':undefined, // TODO: 未设置 interface
+    
+    // 加密
+    'getUserCryptoManager':undefined,
+
+    // 路由
+    'switchTab':Promise,
+    'reLaunch':Promise,
+    'redirectTo':Promise,
+    'navigateTo':Promise,
+    'navigateBack':Promise,
+
+    // 跳转
+    'navigateToMiniProgram': Promise,
+    'navigateBackMiniProgram':Promise,
+    'exitMiniProgram':Promise,
+
+    // 转发
+    'updateShareMenu':Promise,
+    'showShareMenu':Promise,
+    'showShareImageMenu':Promise,
+    'shareVideoMessage':Promise,
+    'shareFileMessage':Promise,
+    'onCopyUrl':undefined,
+    'offCopyUrl':undefined,
+    'hideShareMenu':Promise,
+    'getShareInfo':undefined,
+    'authPrivateMessage':undefined,
   };
 
   constructor(j: typeof jest) {
@@ -91,17 +148,35 @@ export class Weixin {
     return this.jest.fn().mockReturnValue(res);
   }
 
-  onUnhandledRejection():jest.Mock {
-    return this.jest.fn((callback)=>{
-      // TODO test call
-      // callback()
-    }).mockReturnValue(undefined)
+  getRealtimeLogManager():jest.Mock {
+    const res: RealtimeLogManager = new class implements RealtimeLogManager{
+      info(){
+        return true
+      }
+      warn(){
+        return true
+      }
+      error(){
+        return true
+      }
+      setFilterMsg(msg: string):string{
+        return msg
+      }
+      addFilterMsg(msg: string):string{
+        return msg
+      }
+    }
+    return this.jest.fn().mockReturnValue(res);
   }
 
-  onThemeChange():jest.Mock {
-    return this.jest.fn((callback)=>{
-      // TODO test call
-      // callback()
-    }).mockReturnValue(undefined)
+  getLogManager():jest.Mock {
+    const res:LogManager = new class implements LogManager {
+      debug(){return true}
+      info(){return true}
+      log(){return true}
+      warn(){return true}
+    }
+    return this.jest.fn().mockReturnValue(res);
   }
+
 }

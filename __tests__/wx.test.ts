@@ -72,20 +72,81 @@ describe('test weixin', () => {
 
   it('onUnhandledRejection', ()=>{
     expect(wx.onUnhandledRejection()).toBeUndefined()
-    
-    const callback = jest.fn(()=> 'bar');
-    wx.onUnhandledRejection(callback)
-    expect(wx.onUnhandledRejection).toHaveBeenCalledWith(callback)
-    // expect(callback).toBeCalled()
   })
   
 
   it('onThemeChange', ()=>{
     expect(wx.onThemeChange()).toBeUndefined()
-    
-    const callback = jest.fn(()=> 'bar');
-    wx.onThemeChange(callback)
-    expect(wx.onThemeChange).toHaveBeenCalledWith(callback)
-    // expect(callback).toBeCalled()
+  })
+
+  it('onPageNotFound', ()=>{
+    expect(wx.onPageNotFound()).toBeUndefined()
+  })
+
+  it('onError', ()=>{
+    expect(wx.onError()).toBeUndefined()
+  })
+
+  it('onAudioInterruptionEnd', ()=>{
+    expect(wx.onAudioInterruptionEnd()).toBeUndefined()
+  })
+
+  it('onAudioInterruptionBegin', ()=>{
+    expect(wx.onAudioInterruptionBegin()).toBeUndefined()
+  })
+
+  it('onAppShow', ()=>{
+    expect(wx.onAppShow()).toBeUndefined()
+  })
+
+  it('onAppHide', ()=>{
+    expect(wx.onAppHide()).toBeUndefined()
+  })
+
+  it('offUnhandledRejection', ()=>{
+    expect(wx.offUnhandledRejection()).toBeUndefined()
+  })
+
+  it('offThemeChange', ()=>{
+    expect(wx.offThemeChange()).toBeUndefined()
+  })
+
+  it('offPageNotFound', ()=>{
+    expect(wx.offPageNotFound()).toBeUndefined()
+  })
+
+  it('offError', ()=>{
+    expect(wx.offError()).toBeUndefined()
+  })
+
+  it('offAudioInterruptionEnd', ()=>{
+    expect(wx.offAudioInterruptionEnd()).toBeUndefined()
+  })
+
+  it('offAudioInterruptionBegin', ()=>{
+    expect(wx.offAudioInterruptionBegin()).toBeUndefined()
+  })
+
+  it('offAppShow', ()=>{
+    expect(wx.offAppShow()).toBeUndefined()
+  })
+
+  it('offAppHide', ()=>{
+    expect(wx.offAppHide()).toBeUndefined()
+  })
+
+  it('getRealtimeLogManager', ()=>{
+    expect(wx.getRealtimeLogManager().info()).toBeTruthy()
+    expect(wx.getRealtimeLogManager().warn()).toBeTruthy()
+    expect(wx.getRealtimeLogManager().error()).toBeTruthy()
+    expect(wx.getRealtimeLogManager().setFilterMsg('bar')).toBe('bar')
+    expect(wx.getRealtimeLogManager().addFilterMsg('bar')).toBe('bar')
+  })
+
+  it('getLogManager', ()=>{
+    expect(wx.getLogManager().debug()).toBeTruthy()
+    expect(wx.getLogManager().info()).toBeTruthy()
+    expect(wx.getLogManager().log()).toBeTruthy()
+    expect(wx.getLogManager().warn()).toBeTruthy()
   })
 })
