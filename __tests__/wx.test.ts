@@ -149,4 +149,127 @@ describe('test weixin', () => {
     expect(wx.getLogManager().log()).toBeTruthy()
     expect(wx.getLogManager().warn()).toBeTruthy()
   })
+
+  it('reportPerformance', () => {
+    expect(wx.reportPerformance()).toBeUndefined()
+  })
+
+  it('getPerformance', ()=>{
+    expect(wx.getPerformance()).toBeUndefined()
+  })
+
+  it('getUserCryptoManager', ()=>{
+    expect(wx.getUserCryptoManager()).toBeUndefined()
+  })
+
+  it('route', ()=>{
+    expect(wx.switchTab()).toBe(Promise)
+    expect(wx.reLaunch()).toBe(Promise)
+    expect(wx.redirectTo()).toBe(Promise)
+    expect(wx.navigateTo()).toBe(Promise)
+    expect(wx.navigateBack()).toBe(Promise)
+  })
+
+  it('redirect', () => {
+    expect(wx.navigateToMiniProgram()).toBe(Promise)
+    expect(wx.navigateBackMiniProgram()).toBe(Promise)
+    expect(wx.exitMiniProgram()).toBe(Promise)
+  })
+
+  it('report', () => {
+    expect(wx.updateShareMenu()).toBe(Promise)
+    expect(wx.showShareMenu()).toBe(Promise)
+    expect(wx.showShareImageMenu()).toBe(Promise)
+    expect(wx.shareVideoMessage()).toBe(Promise)
+    expect(wx.shareFileMessage()).toBe(Promise)
+    expect(wx.onCopyUrl()).toBe(undefined)
+    expect(wx.offCopyUrl()).toBe(undefined)
+    expect(wx.hideShareMenu()).toBe(Promise)
+    expect(wx.getShareInfo()).toBe(undefined)
+    expect(wx.authPrivateMessage()).toBe(undefined)
+  })
+
+  it('view interactive', ()=>{
+    expect(wx.showToast()).toBe(Promise)
+    expect(wx.showModal()).toBe(Promise)
+    expect(wx.showLoading()).toBe(Promise)
+    expect(wx.showActionSheet()).toBe(Promise)
+    expect(wx.hideToast()).toBe(Promise)
+    expect(wx.hideLoading()).toBe(Promise)
+    expect(wx.enableAlertBeforeUnload()).toBe(undefined)
+    expect(wx.disableAlertBeforeUnload()).toBe(undefined)
+
+    expect(wx.showNavigationBarLoading()).toBe(Promise)
+    expect(wx.setNavigationBarTitle()).toBe(Promise)
+    expect(wx.setNavigationBarColor()).toBe(Promise)
+    expect(wx.hideNavigationBarLoading()).toBe(Promise)
+    expect(wx.hideHomeButton()).toBe(Promise)
+
+    expect(wx.setBackgroundTextStyle()).toBe(Promise)
+    expect(wx.setBackgroundColor()).toBe(Promise)
+
+    expect(wx.showTabBarRedDot()).toBe(Promise)
+    expect(wx.showTabBar()).toBe(Promise)
+    expect(wx.setTabBarStyle()).toBe(Promise)
+    expect(wx.setTabBarItem()).toBe(Promise)
+    expect(wx.setTabBarBadge()).toBe(Promise)
+    expect(wx.removeTabBarBadge()).toBe(Promise)
+    expect(wx.hideTabBarRedDot()).toBe(Promise)
+    expect(wx.hideTabBar()).toBe(Promise)
+
+    expect(wx.loadFontFace()).toBe(Promise)
+    expect(wx.stopPullDownRefresh()).toBe(Promise)
+    expect(wx.startPullDownRefresh()).toBe(Promise)
+    expect(wx.pageScrollTo()).toBe(Promise)
+    
+  })
+
+  it('createAnimation', () => {
+    expect(wx.createAnimation().export()).toBeTruthy()
+    expect(wx.createAnimation().step()).toBeTruthy()
+    expect(wx.createAnimation().matrix()).toBeTruthy()
+    expect(wx.createAnimation().matrix3d()).toBeTruthy()
+    expect(wx.createAnimation().rotate()).toBeTruthy()
+    expect(wx.createAnimation().rotate3d()).toBeTruthy()
+    expect(wx.createAnimation().rotateX()).toBeTruthy()
+    expect(wx.createAnimation().rotateY()).toBeTruthy()
+    expect(wx.createAnimation().rotateZ()).toBeTruthy()
+    expect(wx.createAnimation().scale()).toBeTruthy()
+    expect(wx.createAnimation().scale3d()).toBeTruthy()
+    expect(wx.createAnimation().scaleX()).toBeTruthy()
+    expect(wx.createAnimation().scaleY()).toBeTruthy()
+    expect(wx.createAnimation().scaleZ()).toBeTruthy()
+    expect(wx.createAnimation().skew()).toBeTruthy()
+    expect(wx.createAnimation().skewX()).toBeTruthy()
+    expect(wx.createAnimation().skewY()).toBeTruthy()
+    expect(wx.createAnimation().translate()).toBeTruthy()
+    expect(wx.createAnimation().translate3d()).toBeTruthy()
+    expect(wx.createAnimation().translateX()).toBeTruthy()
+    expect(wx.createAnimation().translateY()).toBeTruthy()
+    expect(wx.createAnimation().translateZ()).toBeTruthy()
+    expect(wx.createAnimation().opacity()).toBeTruthy()
+    expect(wx.createAnimation().backgroundColor()).toBeTruthy()
+    expect(wx.createAnimation().width()).toBeTruthy()
+    expect(wx.createAnimation().height()).toBeTruthy()
+    expect(wx.createAnimation().left()).toBeTruthy()
+    expect(wx.createAnimation().right()).toBeTruthy()
+    expect(wx.createAnimation().top()).toBeTruthy()
+    expect(wx.createAnimation().bottom()).toBeTruthy()
+  })
+
+  it('view other', () => {
+    expect(wx.setTopBarText()).toBe(Promise)
+    expect(wx.nextTick()).toBe(undefined)
+    expect(wx.getMenuButtonBoundingClientRect()).toStrictEqual({
+      width:100,
+      height:101,
+      top:102,
+      right:103,
+      bottom:104,
+      left:105,
+    })
+    expect(wx.setWindowSize()).toBe(undefined)
+    expect(wx.onWindowResize()).toBe(undefined)
+    expect(wx.offWindowResize()).toBe(undefined)
+  })
 })

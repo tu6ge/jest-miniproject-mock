@@ -1,7 +1,8 @@
 import {
   UpdateManager,
   RealtimeLogManager,
-  LogManager
+  LogManager,
+  Animation
 } from './interfaces/index'
 export class Weixin {
   private jest: typeof jest;
@@ -12,7 +13,6 @@ export class Weixin {
    * value 是返回值
   */
   readonly apis = {
-    'showModal': Promise,
     'canIUse': true,
     'base64ToArrayBuffer': new ArrayBuffer(8),
     'arrayBufferToBase64': 'base64str',
@@ -99,6 +99,58 @@ export class Weixin {
     'hideShareMenu':Promise,
     'getShareInfo':undefined,
     'authPrivateMessage':undefined,
+
+    // 界面
+    //   交互
+    'showToast': Promise,
+    'showModal': Promise,
+    'showLoading':Promise,
+    'showActionSheet':Promise,
+    'hideToast':Promise,
+    'hideLoading':Promise,
+    'enableAlertBeforeUnload':undefined,
+    'disableAlertBeforeUnload':undefined,
+    //   导航栏
+    'showNavigationBarLoading':Promise,
+    'setNavigationBarTitle':Promise,
+    'setNavigationBarColor':Promise,
+    'hideNavigationBarLoading':Promise,
+    'hideHomeButton':Promise,
+    //   背景
+    'setBackgroundTextStyle':Promise,
+    'setBackgroundColor':Promise,
+    //   Tab Bar
+    'showTabBarRedDot':Promise,
+    'showTabBar':Promise,
+    'setTabBarStyle':Promise,
+    'setTabBarItem':Promise,
+    'setTabBarBadge':Promise,
+    'removeTabBarBadge':Promise,
+    'hideTabBarRedDot':Promise,
+    'hideTabBar':Promise,
+    //    字体
+    'loadFontFace':Promise,
+    //    下拉刷新
+    'stopPullDownRefresh':Promise,
+    'startPullDownRefresh':Promise,
+    //    滚动
+    'pageScrollTo':Promise,
+    //    动画
+    'createAnimation':undefined,
+    //    其他界面
+    'setTopBarText':Promise,
+    'nextTick':undefined,
+    'getMenuButtonBoundingClientRect':{
+      width:100,
+      height:101,
+      top:102,
+      right:103,
+      bottom:104,
+      left:105,
+    },
+    'setWindowSize':undefined,
+    'onWindowResize':undefined,
+    'offWindowResize':undefined,
   };
 
   constructor(j: typeof jest) {
@@ -175,6 +227,42 @@ export class Weixin {
       info(){return true}
       log(){return true}
       warn(){return true}
+    }
+    return this.jest.fn().mockReturnValue(res);
+  }
+
+  createAnimation():jest.Mock {
+    const res:Animation = new class implements Animation {
+      export(){return true}
+      step(){return true}
+      matrix(){return true}
+      matrix3d(){return true}
+      rotate(){return true}
+      rotate3d(){return true}
+      rotateX(){return true}
+      rotateY(){return true}
+      rotateZ(){return true}
+      scale(){return true}
+      scale3d(){return true}
+      scaleX(){return true}
+      scaleY(){return true}
+      scaleZ(){return true}
+      skew(){return true}
+      skewX(){return true}
+      skewY(){return true}
+      translate(){return true}
+      translate3d(){return true}
+      translateX(){return true}
+      translateY(){return true}
+      translateZ(){return true}
+      opacity(){return true}
+      backgroundColor(){return true}
+      width(){return true}
+      height(){return true}
+      left(){return true}
+      right(){return true}
+      top(){return true}
+      bottom(){return true}
     }
     return this.jest.fn().mockReturnValue(res);
   }
