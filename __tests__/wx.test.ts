@@ -1,5 +1,39 @@
 import {Weixin} from '../src/wx';
 
+describe('test weixin global function', () => {
+  let wx
+  beforeEach(() => {
+    wx = new Weixin(jest);
+    wx.registerGetApp()
+    wx.registerGetCurrentPages()
+    wx.registerRequirePlugin()
+    wx.registerRequireMiniProgram()
+  })
+  afterEach(() => {
+    delete global.getApp
+    delete global.getCurrentPages
+    delete global.requirePlugin
+    delete global.requireMiniProgram
+  })
+
+  it('test getApp', () => {
+    expect(global.getApp()).toStrictEqual({
+      globalData:{
+        foo:'bar',
+      },
+    })
+  })
+  it('test getCurrentPages', () => {
+    expect(global.getCurrentPages()).toStrictEqual([])
+  })
+  it('test requirePlugin', () => {
+    expect(global.requirePlugin).toBeDefined()
+  })
+  it('test requireMiniProgram', () => {
+    expect(global.requireMiniProgram).toBeDefined()
+  })
+})
+
 describe('test weixin', () => {
   let wx
   beforeEach(() => {

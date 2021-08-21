@@ -479,6 +479,42 @@ export class Weixin {
   //   return this.jest.fn(()=> 'demo')
   // }
 
+  registerGetApp():void {
+    Object.defineProperty(global, 'getApp', {
+      enumerable:false,
+      configurable:true,
+      value: this.jest.fn().mockReturnValue({
+        globalData:{
+          foo:'bar',
+        },
+      })
+    })
+  }
+
+  registerGetCurrentPages():void {
+    Object.defineProperty(global, 'getCurrentPages', {
+      enumerable:false,
+      configurable:true,
+      value: this.jest.fn().mockReturnValue([])
+    })
+  }
+
+  registerRequirePlugin():void {
+    Object.defineProperty(global, 'requirePlugin', {
+      enumerable:false,
+      configurable:true,
+      value: this.jest.fn()
+    })
+  }
+
+  registerRequireMiniProgram():void {
+    Object.defineProperty(global, 'requireMiniProgram', {
+      enumerable:false,
+      configurable:true,
+      value: this.jest.fn()
+    })
+  }
+
   /**
    * 
    * @returns 
