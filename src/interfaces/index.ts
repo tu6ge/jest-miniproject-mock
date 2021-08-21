@@ -52,3 +52,24 @@ export interface Animation {
   top ?: Function,
   bottom ?: Function,
 }
+
+export interface RequestTask{
+  abort ?: Function,
+  onHeadersReceived ?: Function,
+  offHeadersReceived ?: Function,
+}
+
+export interface DownloadTask extends RequestTask { 
+  onProgressUpdate ?: Function,
+  offProgressUpdate ?: Function,
+}
+export interface UploadTask extends DownloadTask {}
+
+export interface SocketTask {
+  send ?: Function,
+  close ?: Function,
+  onOpen ?: Function,
+  onClose ?: Function,
+  onError ?: Function,
+  onMessage ?: Function,
+}

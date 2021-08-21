@@ -2,7 +2,11 @@ import {
   UpdateManager,
   RealtimeLogManager,
   LogManager,
-  Animation
+  Animation,
+  RequestTask,
+  DownloadTask,
+  UploadTask,
+  SocketTask
 } from './interfaces/index'
 export class Weixin {
   private jest: typeof jest;
@@ -151,6 +155,303 @@ export class Weixin {
     'setWindowSize':undefined,
     'onWindowResize':undefined,
     'offWindowResize':undefined,
+
+    // 网络
+    'request':undefined,
+    'downloadFile':undefined,
+    'uploadFile':undefined,
+    'sendSocketMessage':Promise,
+    'onSocketOpen':undefined,
+    'onSocketMessage':undefined,
+    'onSocketError':undefined,
+    'onSocketClose':undefined,
+    'connectSocket':undefined,
+    'closeSocket':Promise,
+    'stopLocalServiceDiscovery':Promise,
+    'startLocalServiceDiscovery':Promise,
+    'onLocalServiceResolveFail':undefined,
+    'onLocalServiceLost':undefined,
+    'onLocalServiceFound':undefined,
+    'onLocalServiceDiscoveryStop':undefined,
+    'offLocalServiceResolveFail':undefined,
+    'offLocalServiceLost':undefined,
+    'offLocalServiceFound':undefined,
+    'offLocalServiceDiscoveryStop':undefined,
+    'createTCPSocket':undefined,// TODO 未模拟返回值
+    'createUDPSocket':undefined,// TODO 未模拟返回值
+
+    // 支付
+    'requestPayment':Promise,
+    'requestOrderPayment':Promise,
+
+    // 数据缓存
+    'setStorageSync':Promise,
+    'setStorage':Promise,
+    'revokeBufferURL':Promise,
+    'removeStorageSync':Promise,
+    'removeStorage':Promise,
+    'getStorageSync':Promise,
+    'getStorageInfoSync':Promise,
+    'getStorageInfo':Promise,
+    'getStorage':Promise,
+    'createBufferURL':undefined,// TODO:返回值格式未知
+    'clearStorageSync':Promise,
+    'clearStorage':Promise,
+    'setBackgroundFetchToken':Promise,
+    'onBackgroundFetchData':undefined,
+    'getBackgroundFetchToken':Promise,
+    'getBackgroundFetchData':Promise,
+
+    // data-analysis
+    'reportMonitor':undefined,
+    'reportEvent':undefined,
+    'reportAnalytics':undefined,
+    'getExptInfoSync':{
+      'foo1':'bar1'   // TODO 模拟的数据有些主观
+    },
+
+    // 画布
+    'createOffscreenCanvas':undefined, // TODO: 未模拟返回值
+    'createCanvasContext':undefined, // TODO: 未模拟返回值
+    'canvasToTempFilePath':Promise,
+    'canvasPutImageData':Promise,
+    'canvasGetImageData':Promise,
+
+    // 多媒体
+    'createMapContext':undefined, // TODO: 未模拟返回值
+    'saveImageToPhotosAlbum':Promise,
+    'previewMedia':Promise,
+    'previewImage':Promise,
+    'getImageInfo':Promise,
+    'compressImage':Promise,
+    'chooseMessageFile':Promise,
+    'chooseImage':Promise,
+    'saveVideoToPhotosAlbum':Promise,
+    'openVideoEditor':undefined,
+    'getVideoInfo':undefined,
+    'createVideoContext':undefined, // TODO: 未模拟返回值
+    'compressVideo':Promise,
+    'chooseVideo':Promise,
+    'chooseMedia':Promise,
+    'stopVoice':Promise,
+    'setInnerAudioOption':Promise,
+    'playVoice':Promise,
+    'pauseVoice':Promise,
+    'getAvailableAudioSources':Promise,
+    'createWebAudioContext':undefined,//TODO: 未模拟返回值
+    'createMediaAudioPlayer':undefined,//TODO: 未模拟返回值
+    'createInnerAudioContext':undefined,//TODO: 未模拟返回值
+    'createAudioContext':undefined,//TODO: 未模拟返回值
+    'stopBackgroundAudio':Promise,
+    'seekBackgroundAudio':Promise,
+    'playBackgroundAudio':Promise,
+    'pauseBackgroundAudio':Promise,
+    'onBackgroundAudioStop':undefined,
+    'onBackgroundAudioPlay':undefined,
+    'onBackgroundAudioPause':undefined,
+    'getBackgroundAudioPlayerState':Promise,
+    'getBackgroundAudioManager':undefined,//TODO: 未模拟返回值
+    'createLivePusherContext':undefined,//TODO: 未模拟返回值
+    'createLivePlayerContext':undefined,//TODO: 未模拟返回值
+    'stopRecord':Promise,
+    'startRecord':Promise,
+    'getRecorderManager':undefined,//TODO: 未模拟返回值
+    'createCameraContext':undefined,//TODO: 未模拟返回值
+    'createMediaContainer':undefined,//TODO: 未模拟返回值
+    'updateVoIPChatMuteConfig':Promise,
+    'subscribeVoIPVideoMembers':Promise,
+    'onVoIPVideoMembersChanged':undefined,
+    'onVoIPChatStateChanged':undefined,
+    'onVoIPChatSpeakersChanged':undefined,
+    'onVoIPChatMembersChanged':undefined,
+    'onVoIPChatInterrupted':undefined,
+    'offVoIPVideoMembersChanged':undefined,
+    'offVoIPChatStateChanged':undefined,
+    'offVoIPChatMembersChanged':undefined,
+    'offVoIPChatInterrupted':undefined,
+    'joinVoIPChat':Promise,
+    'exitVoIPChat':Promise,
+    'createMediaRecorder':undefined,//TODO: 未模拟返回值
+    'createVideoDecoder':undefined,//TODO: 未模拟返回值
+
+    // 位置
+    'stopLocationUpdate':Promise,
+    'startLocationUpdateBackground':Promise,
+    'startLocationUpdate':Promise,
+    'openLocation':Promise,
+    'onLocationChange':undefined,
+    'offLocationChange':undefined,
+    'getLocation':Promise,
+    'choosePoi':Promise,
+    'chooseLocation':Promise,
+
+    // 文件
+    'saveFileToDisk':undefined,
+    'saveFile':Promise,
+    'removeSavedFile':Promise,
+    'openDocument':Promise,
+    'getSavedFileList':Promise,
+    'getSavedFileInfo':Promise,
+    'getFileSystemManager':undefined,//TODO: 未模拟返回值
+    'getFileInfo':Promise,
+
+    // 开放接口
+    'login':undefined,
+    'checkSession':Promise,
+    'getAccountInfoSync':{
+      miniProgram:{
+        appId:'xxx',
+        envVersion:'bar',
+        version:'0.0.0',
+      },
+      plugin:{
+        appId:'xxx',
+        version:'0.0.0',
+      }
+    },
+    'getUserProfile':Promise,
+    'getUserInfo':undefined,
+    'authorizeForMiniProgram':undefined,
+    'authorize':Promise,
+    'openSetting':Promise,
+    'getSetting':Promise,
+    'chooseAddress':Promise,
+    'openCard':Promise,
+    'addCard':Promise,
+    'chooseInvoiceTitle':Promise,
+    'chooseInvoice':Promise,
+    'startSoterAuthentication':Promise,
+    'checkIsSupportSoterAuthentication':Promise,
+    'checkIsSoterEnrolledInDevice':Promise,
+    'shareToWeRun':Promise,
+    'getWeRunData':undefined,
+    'requestSubscribeMessage':Promise,
+    'showRedPackage':Promise,
+    'addVideoToFavorites':Promise,
+    'addFileToFavorites':Promise,
+    'chooseLicensePlate':Promise,
+    'reserveChannelsLive':undefined,
+    'openChannelsLive':undefined,
+    'openChannelsActivity':undefined,
+    'getChannelsLiveNoticeInfo':undefined,
+    'getChannelsLiveInfo':undefined,
+    'getGroupEnterInfo':undefined,
+    'openCustomerServiceChat':undefined,
+
+    // 设备
+    'stopBluetoothDevicesDiscovery':Promise,
+    'startBluetoothDevicesDiscovery':Promise,
+    'openBluetoothAdapter':Promise,
+    'onBluetoothDeviceFound':undefined,
+    'onBluetoothAdapterStateChange':undefined,
+    'offBluetoothDeviceFound':undefined,
+    'offBluetoothAdapterStateChange':undefined,
+    'makeBluetoothPair':Promise,
+    'getConnectedBluetoothDevices':Promise,
+    'getBluetoothDevices':Promise,
+    'getBluetoothAdapterState':Promise,
+    'closeBluetoothAdapter':Promise,
+    'writeBLECharacteristicValue':Promise,
+    'setBLEMTU':Promise,
+    'readBLECharacteristicValue':Promise,
+    'onBLEConnectionStateChange':undefined,
+    'onBLECharacteristicValueChange':undefined,
+    'offBLEConnectionStateChange':undefined,
+    'offBLECharacteristicValueChange':undefined,
+    'notifyBLECharacteristicValueChange':Promise,
+    'getBLEDeviceServices':Promise,
+    'getBLEDeviceRSSI':Promise,
+    'getBLEDeviceCharacteristics':Promise,
+    'createBLEConnection':Promise,
+    'closeBLEConnection':Promise,
+    'onBLEPeripheralConnectionStateChanged':undefined,
+    'offBLEPeripheralConnectionStateChanged':undefined,
+    'createBLEPeripheralServer':Promise,
+    'stopBeaconDiscovery':Promise,
+    'startBeaconDiscovery':Promise,
+    'onBeaconUpdate':undefined,
+    'onBeaconServiceChange':undefined,
+    'offBeaconUpdate':undefined,
+    'offBeaconServiceChange':undefined,
+    'getBeacons':Promise,
+    'stopHCE':Promise,
+    'startHCE':Promise,
+    'sendHCEMessage':Promise,
+    'onHCEMessage':undefined,
+    'offHCEMessage':undefined,
+    'getNFCAdapter':undefined,//TODO: 未模拟返回值
+    'getHCEState':Promise,
+    'stopWifi':Promise,
+    'startWifi':Promise,
+    'setWifiList':Promise,
+    'onWifiConnected':undefined,
+    'onGetWifiList':undefined,
+    'offWifiConnected':undefined,
+    'offGetWifiList':undefined,
+    'getWifiList':Promise,
+    'getConnectedWifi':Promise,
+    'connectWifi':Promise,
+    'addPhoneRepeatCalendar':Promise,
+    'addPhoneCalendar':Promise,
+    'searchContacts':Promise,
+    'chooseContact':undefined,
+    'addPhoneContact':Promise,
+    'checkIsOpenAccessibility':Promise,
+    'getBatteryInfoSync':Promise,
+    'getBatteryInfo':Promise,
+    'setClipboardData':Promise,
+    'getClipboardData':Promise,
+    'onNetworkStatusChange':undefined,
+    'offNetworkStatusChange':undefined,
+    'getNetworkType':Promise,
+    'getRandomValues':Promise,
+    'setScreenBrightness':Promise,
+    'setKeepScreenOn':Promise,
+    'onUserCaptureScreen':undefined,
+    'offUserCaptureScreen':undefined,
+    'getScreenBrightness':Promise,
+    'onKeyboardHeightChange':undefined,
+    'offKeyboardHeightChange':undefined,
+    'hideKeyboard':Promise,
+    'getSelectedTextRange':Promise,
+    'makePhoneCall':Promise,
+    'stopAccelerometer':Promise,
+    'startAccelerometer':Promise,
+    'onAccelerometerChange':undefined,
+    'offAccelerometerChange':undefined,
+    'stopCompass':Promise,
+    'startCompass':Promise,
+    'onCompassChange':undefined,
+    'offCompassChange':undefined,
+    'stopDeviceMotionListening':Promise,
+    'startDeviceMotionListening':Promise,
+    'onDeviceMotionChange':undefined,
+    'offDeviceMotionChange':undefined,
+    'stopGyroscope':Promise,
+    'startGyroscope':Promise,
+    'onGyroscopeChange':undefined,
+    'offGyroscopeChange':undefined,
+    'onMemoryWarning':undefined,
+    'offMemoryWarning':undefined,
+    'scanCode':Promise,
+    'vibrateShort':Promise,
+    'vibrateLong':Promise,
+
+    // AI 人脸识别
+    'stopFaceDetect':undefined,
+    'initFaceDetect':undefined,
+    'faceDetect':undefined,
+
+    // Worker
+    'createWorker':undefined,//TODO: 未模拟返回值
+    
+    // WXML
+    'createSelectorQuery':undefined,//TODO: 未模拟返回值
+    'createIntersectionObserver':undefined,//TODO: 未模拟返回值
+    'getExtConfigSync':undefined,
+    'getExtConfig':Promise,
+    'createRewardedVideoAd':undefined,//TODO: 未模拟返回值
+    'createInterstitialAd':undefined,//TODO: 未模拟返回值
   };
 
   constructor(j: typeof jest) {
@@ -267,4 +568,46 @@ export class Weixin {
     return this.jest.fn().mockReturnValue(res);
   }
 
+  request():jest.Mock {
+    const res: RequestTask = new class implements RequestTask {
+      abort(){return true}
+      onHeadersReceived(){return true}
+      offHeadersReceived(){return true}
+    }
+    return this.jest.fn().mockReturnValue(res);
+  }
+
+  downloadFile():jest.Mock {
+    const res: DownloadTask = new class implements DownloadTask {
+      abort(){return true}
+      onHeadersReceived(){return true}
+      offHeadersReceived(){return true}
+      onProgressUpdate(){return true}
+      offProgressUpdate(){return true}
+    }
+    return this.jest.fn().mockReturnValue(res);
+  }
+
+  uploadFile():jest.Mock {
+    const res: UploadTask = new class implements UploadTask {
+      abort(){return true}
+      onHeadersReceived(){return true}
+      offHeadersReceived(){return true}
+      onProgressUpdate(){return true}
+      offProgressUpdate(){return true}
+    }
+    return this.jest.fn().mockReturnValue(res);
+  }
+
+  connectSocket():jest.Mock {
+    const res:SocketTask = new class implements SocketTask {
+      send(){return true}
+      close(){return true}
+      onOpen(){return true}
+      onClose(){return true}
+      onError(){return true}
+      onMessage(){return true}
+    }
+    return this.jest.fn().mockReturnValue(res);
+  }
 }
